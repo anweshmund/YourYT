@@ -35,10 +35,48 @@
 
         <div id="errorMessage" class="error-message" style="display: none;"></div>
 
-        <div id="videoContainer" class="video-container" style="display: none;"></div>
+        <div id="videoContainer" class="video-container" style="display: none;">
+            <div id="player"></div>
+        </div>
+
+        <div id="controlsContainer" class="controls-container" style="display: none;">
+            <div class="controls-row">
+                <button id="playPauseBtn" class="control-btn play-pause">
+                    <span class="btn-icon">⏸</span>
+                    <span class="btn-label">Pause</span>
+                </button>
+                <button id="stopBtn" class="control-btn stop">
+                    <span class="btn-icon">⏹</span>
+                    <span class="btn-label">Stop</span>
+                </button>
+                <div class="volume-control">
+                    <button id="volumeDownBtn" class="control-btn volume">
+                        <span class="btn-icon">🔉</span>
+                    </button>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="50" class="volume-slider">
+                    <button id="volumeUpBtn" class="control-btn volume">
+                        <span class="btn-icon">🔊</span>
+                    </button>
+                    <span id="volumeValue" class="volume-value">50%</span>
+                </div>
+            </div>
+            <div class="controls-row">
+                <button id="downloadBtn" class="control-btn download">
+                    <span class="btn-icon">⬇️</span>
+                    <span class="btn-label">Download Video</span>
+                </button>
+            </div>
+        </div>
 
         <div id="videoInfo" class="video-info" style="display: none;">
             <p>Video URL: <a id="currentVideoUrl" href="#" target="_blank"></a></p>
+        </div>
+
+        <div id="downloadProgress" class="download-progress" style="display: none;">
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+            </div>
+            <p id="progressText">Preparing download...</p>
         </div>
 
         <div class="instructions">
@@ -51,6 +89,7 @@
         </div>
     </div>
 
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="script.js"></script>
 </body>
 </html>

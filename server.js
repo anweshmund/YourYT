@@ -2,6 +2,7 @@ const express = require('express');
 const https = require('https');
 const path = require('path');
 const cors = require('cors');
+const ytdl = require('ytdl-core');
 
 const app = express();
 const PORT = 3000;
@@ -82,6 +83,38 @@ app.post('/api/search', async (req, res) => {
   } catch (error) {
     console.error('Search error:', error);
     res.status(500).json({ error: error.message || 'Failed to search YouTube' });
+  }
+});
+
+// Download endpoint
+app.get('/api/download/:videoId', async (req, res) => {
+  try {
+    const { videoId } = req.params;
+    
+    if (!videoId || !ytdl.validateID(videoId)) {
+      return res.status(400).json({ error: 'Invalid video ID' });
+    }
+
+    const videoURL = `https://www.youtube.com/watch?v=${videoId}`;
+    
+    // Get video info for filename
+    const info = await ytdl.getInfo(videoURL);
+    const title = info.videoDetails.title.replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '_');
+    const filename = `${title || 'video'}.mp4`;
+
+    // Set headers
+    res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+    res.setHeader('Content-Type', 'video/mp4');
+
+    // Stream video
+    ytdl(videoURL, {
+      quality: 'highestvideo',
+      filter: 'videoandaudio',
+    }).pipe(res);
+
+  } catch (error) {
+    console.error('Download error:', error);
+    res.status(500).json({ error: error.message || 'Failed to download video' });
   }
 });
 
