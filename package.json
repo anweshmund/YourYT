@@ -1,0 +1,23 @@
+{
+  "name": "youtube-player-ui",
+  "version": "1.0.0",
+  "description": "YouTube Player with Search Functionality",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "youtube",
+    "player",
+    "search"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  }
+}
+
+

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Player</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎵 YouTube Player</h1>
+            <p class="subtitle">Search or paste a YouTube link to play videos</p>
+        </div>
+
+        <div class="search-section">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Enter YouTube URL or search for a video..." 
+                    autocomplete="off"
+                >
+                <button id="searchButton" class="search-btn">
+                    <span class="btn-text">Search</span>
+                    <span class="btn-icon">🔍</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="loadingSpinner" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Searching YouTube...</p>
+        </div>
+
+        <div id="errorMessage" class="error-message" style="display: none;"></div>
+
+        <div id="videoContainer" class="video-container" style="display: none;"></div>
+
+        <div id="videoInfo" class="video-info" style="display: none;">
+            <p>Video URL: <a id="currentVideoUrl" href="#" target="_blank"></a></p>
+        </div>
+
+        <div class="instructions">
+            <h3>How to use:</h3>
+            <ul>
+                <li>🔗 Paste a YouTube URL (e.g., https://www.youtube.com/watch?v=...)</li>
+                <li>🔍 Or search for any video by name</li>
+                <li>▶️ The video will play directly in your browser</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
